@@ -138,3 +138,5 @@ App_Data/*.ldf
 Templates/GeneralPluginWizard/microsoft.visualstudio.templatewizard.dll
 *.lock
 *.vsidx
+*.json
+*.sqlite
