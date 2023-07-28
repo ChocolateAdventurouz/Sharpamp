@@ -18,19 +18,18 @@
 * You should have received a copy of the GNU Lesser General Public License
 * along with Sharpamp.  If not, see <http://www.gnu.org/licenses/>.
 */
-using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Xml;
 using EnvDTE;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Daniel15.Sharpamp
 {
-    
-    public class GeneralPluginWizard : Wizard;
+    public class GeneralPluginWizard : IWizard
     {
         // The information we're sharing
-        private static string _PluginGuid = string.Empty;
+        private static string _PluginGuid;
         private static string _PluginName;
         private static string _SafePluginName;
 
@@ -43,13 +42,11 @@ namespace Daniel15.Sharpamp
             // "AsMultiProject" (ie. the first run).
             if (runKind == WizardRunKind.AsMultiProject)
             {
-                // GUID is set below, in ProjectFinishedGenerating.
-                //_PluginGuid = replacementsDictionary["$guid2$"];
                 _PluginName = replacementsDictionary["$projectname$"];
                 _SafePluginName = replacementsDictionary["$safeprojectname$"];
             }
 
-            // Better add all our stuff.
+            // Better add all our stuff using string interpolation.
             replacementsDictionary.Add("$PluginGuid$", _PluginGuid);
             replacementsDictionary.Add("$PluginName$", _PluginName);
             replacementsDictionary.Add("$SafePluginName$", _SafePluginName);
@@ -63,9 +60,8 @@ namespace Daniel15.Sharpamp
             // assuming that the plugin itself will be the FIRST project, and
             // the wrapper will be the SECOND one. This'll break if that 
             // changes!
-            if (_PluginGuid != string.Empty)
-                return;
-
+            if (_PluginGuid == null || _PluginGuid == ""){ return; }
+            //else if (_PluginGuid != null && Assembly.GetCallingAssembly.)
             // DTE does not expose the project GUID that exists at in the msbuild project file.
             // Cannot use MSBuild object model because it uses a static instance of the Engine, 
             // and using the Project will cause it to be unloaded from the engine when the 
@@ -74,14 +70,11 @@ namespace Daniel15.Sharpamp
             using (XmlReader projectReader = XmlReader.Create(project.FileName))
             {
                 projectReader.MoveToContent();
-                object nodeName = projectReader.NameTable.Add("ProjectGuid");
+                var nodeName = projectReader.NameTable.Add("ProjectGuid");
                 while (projectReader.Read())
                 {
-                    if (Object.Equals(projectReader.LocalName, nodeName))
-                    //if (projectReader.LocalName.Equals(nodeName))
+                    if (string.Equals(projectReader.LocalName, nodeName))
                     {
-                        //projectGuid = projectReader.ReadContentAsString();
-                        //projectGuid = (string)projectReader.ReadContentAs(typeof(string), null);
                         _PluginGuid = projectReader.ReadElementContentAsString();
                         break;
                     }
