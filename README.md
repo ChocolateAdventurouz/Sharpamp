@@ -1,11 +1,11 @@
-Sharpamp - Create Winamp plugins in C#
+Sharpamp - Create Winamp/WACUP plugins in C#
 ===============================================
 Original written by Daniel15 - http://dan.cx/ - revived/upgraded by ChocolateAdventurouz
 
 Download from the [GitHub Releases Page](https://github.com/ChocolateAdventurouz/Sharpamp/tags)
 
-Sharpamp allows you to easily write Winamp plugins in C#. It provides a library for access to the
-Winamp API, and a Visual Studio template for creating Winamp plugins. It **requires** you to have 
+Sharpamp allows you to easily write Winamp/WACUP plugins in C#. It provides a library for access to the
+Winamp API, and a Visual Studio template for creating Winamp/WACUP plugins. It **requires** you to have 
 Visual Studio 2005, 2008 or 2010. Take a look at the
 [Wiki](https://github.com/Daniel15/Sharpamp/wiki) page to see how 
 simple it is to get started :)
@@ -29,9 +29,9 @@ A demonstration of what you can do with Sharpamp is shown in the [HelloWorldGUI]
 
 Requirements:
 =============
- - Visual Studio 2005, 2008 or 2010
+ - Visual Studio 2019+ (at least where it is tested)
    - C# and C++ both have to be installed
- - Winamp
+ - Winamp/WACUP
 
 License
 =======
