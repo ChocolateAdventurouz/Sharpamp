@@ -19,5 +19,6 @@ namespace $safeprojectname$
 			// TODO: Put your configuration code here
 			return;
 		}
+		// Using a Quit() method here is supported, but there is not a need to add it, as the Plugin Wrapper will take care of that process by default
 	}
 }
