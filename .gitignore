@@ -142,3 +142,5 @@ App_Data/*.ldf
 
 #.vs directories
 Templates/GeneralPluginTemplate/.vs/*
+Templates/GeneralPluginTemplate/Plugin/.vs/*
+Templates/GeneralPluginTemplate/PluginWrapper/.vs/*
