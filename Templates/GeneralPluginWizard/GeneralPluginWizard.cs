@@ -19,10 +19,11 @@
 * along with Sharpamp.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System.Collections.Generic;
+using System;
 using System.Reflection;
 using System.Xml;
-using EnvDTE;
 using Microsoft.VisualStudio.TemplateWizard;
+using EnvDTE;
 
 namespace Daniel15.Sharpamp
 {
